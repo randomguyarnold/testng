@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Battler Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-button.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-modal.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-transition.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-tab.js"></script>
+  <script type="text/javascript" src="/js/profile.js"></script>
+  <script> 
+  user = "<%=username%>";
+  // Populate a list of avatars
+  $(document).ready(function(){
+    var picNames = "<%=pictures%>";
+    picNames = picNames.replace(/.png/g,"");
+    var picArray = picNames.split(',');
+    $.each(picArray, function(index, value){
+      $('#avatarPick').append('<option value="'+ value +'">'+ value +'</option>');
+    });
+	
+	//Populate a list of scripts
+	var scriptNames = "<%=scripts%>";
+    var scriptArray = scriptNames.split(',');
+    $.each(scriptArray, function(index, value){
+      $('#scriptView').append('<li value="'+ value +'">'+ value +'</li>');
+    });
+  });
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class = "navbar">
+    <div class = "tabbable">
+      <ul class = "nav nav-tabs">
+        <li><a href="/about"><img class="logo" src="/img/about.png"></a></li>
+        <li><a href="/play"><img class="logo" src="/img/play.png"></a></li>
+        <li><a href="/"><img class="logo" src="/img/logo.png"></a></li>      
+        <li><a href="/war"><img class="logo" src="/img/war.png"></a></li>
+        <li><a id="logger" href="/loginPage"><img class="logo" src="/img/login.png"></a></li>
+      </ul>
+    </div> 
+    </div>
+    <div class="row">
+      <div class="offset3 span8">
+        <h3>Welcome to your profile</h3>
+        <p>Here you can manage your account and view your battle statistics.</p>
+        <div class="tabbable" style="margin-bottom: 18px;">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">profile</a></li>
+            <li><a href="#tab2" data-toggle="tab">upload AI script</a></li>
+            <li><a href="#tab3" data-toggle="tab">user achievements</a></li>
+            <li><a href="#tab4" data-toggle="tab">account settings</a></li>
+          </ul>
+          <div class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+            <div class="tab-pane active" id="tab1">
+        <p><img src = "<%=avatar%>" alt="avatar" id="avatar"></p>
+              <p>User ID: <%=username%></p>
+              <p>Email: <%=email%></p>
+              <p>Number of wins: <%=wins%></p>
+        <p>Number of losses: <%=losses%></p>
+            </div>
+            <div class="tab-pane" id="tab2" align="left">
+              <h3>Upload your very own AI script here! (.js files only)</h3>
+              <form action="/submitFile" enctype="multipart/form-data" method="POST"><input type="file" name="uploadfile"/>
+              <button type="submit" class="btn btn-primary" id="userfile" action="/profile">Submit</button><br><br>
+      			  <h4 align="left">Your Scripts:</h4>
+      			  <ol class="table table-striped table-bordered table-condensed" id = "scriptView" name = "scripts"></ol>
+              </br>
+      			  <h4>Explanation:</h4>
+      			  <p>Here we provide an API to simplify the process of writing a Pokemon AI (for Pokemon Showdown). The main idea is that we provide some functions you can call in your scripts to get information, and you write some (specified) functions that we will call at the appropriate information. This leaves you free to concentrate on battle strategy rather than worrying about how to interface with the Pokemon Showdown code.</p>
+					<p>Note that the API only works for Singles battles currently and that scripts must be written in Javascript.</p>
+      			  <p>Download the following script template to get started!
+      			  
+            </p>
+            <h4>(right click and save as) <a href="/AI/empty.js">empty.js</a></h4>
+            </div>
+            <div class="tab-pane" id="tab3">
+              <h4>Here's a list of achievements you can accumulate as you battle!</h4>
+              <br/>
+              <table class="table table-striped table-bordered table-condensed">
+                <thead>
+                  <tr>
+                    <th>Badge</th>
+                    <th>Achievement</th>
+                    <th>No. of times achieved</th>
+                  </tr>
+                </thead>
+                <tbody class="achievement-list">
+           <tr>
+                    <td><img src = "/img/uber.png" id="avatar"></td>
+                    <td>
+                      <h4>Uber Victory</h4>
+                      <p> Win a victory in the Ubers tier </p>
+                    </td>
+                    <td><%=ubers%></td>
+                  </tr>
+                  <tr>
+                    <td><img src = "/img/ou.png" id="avatar"></td>
+                    <td>
+                      <h4>OU Victory</h4>
+                      <p> Win a victory in the OU (Overused) tier </p>
+                    </td>
+                    <td><%=ou%></td>
+                  </tr>
+                  <tr>
+                    <td><img src = "/img/uu.png" id="avatar"></td>
+                    <td>
+                      <h4>UU Victory</h4>
+                      <p> Win a victory in the UU (Underused) tier </p>
+                    </td>
+                    <td><%=uu%></td>
+                  </tr>
+                   <tr>
+                    <td><img src = "/img/nu.png" id="avatar"></td>
+                    <td>
+                      <h4>NU Victory</h4>
+                      <p> Win a victory in the NU (Neverused) tier </p>
+                    </td>
+                    <td><%=nu%></td>
+                  </tr>     
+          <tr>
+                    <td><img src = "/img/lc.png" id="avatar"></td>
+                    <td>
+                      <h4>LC Victory</h4>
+                      <p> Win a victory in the LC (Little Cup) format </p>
+                    </td>
+                    <td><%=lc%></td>
+                  </tr>                                                
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane" id="tab4">
+            <div class="profile">  
+              <form id="updateEmail-form" action="/updateEmail" method="post">
+                <h4>Change your email address</h4>
+                <p>Your current email address: <%=email%></p>
+                <p><input type="text" name="email" class="input-xlarge span8" autofocus placeholder="new email address"></p>
+                <p><button type="submit" class="btn btn-primary" id="update-email">Update</button></p>
+              </form>
+              <br/>
+              <form id="updateAvatar-form" action="/updateAvatar" method="post">
+                <h4>Change your profile picture</h4>
+                <p>Your current profile picture:</p>
+                <p><img src = "<%=avatar%>" alt="avatar" id="avatar"></p>
+                <p>Choose another avatar:</p>
+                <select id = "avatarPick" name = "avatar"></select>
+                <p><button type="submit" class="btn btn-primary" id="update-avatar">Update</button></p>
+              </form>
+            </div>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

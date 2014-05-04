@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Try again!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-button.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-modal.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-transition.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-tab.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class = "navbar">
+    <div class = "tabbable">
+      <ul class = "nav nav-tabs">
+        <li><a href="/about"><img class="logo" src="/img/about.png"></a></li>
+        <li><a href="/play"><img class="logo" src="/img/play.png"></a></li>
+        <li><a href="/"><img class="logo" src="/img/logo.png"></a></li>      
+        <li><a href="/war"><img class="logo" src="/img/war.png"></a></li>
+        <li><a id="logger" href="/loginPage"><img class="logo" src="/img/login.png"></a></li>
+      </ul>
+    </div> 
+    </div>
+    <div class="row">
+      <div class="offset4 span6">
+        <h3>Whoops! Try again!</h3>
+        <p>Please enter your username and password correctly!</p>
+      </div>
+    </div>
+      <div id="login-container" class="offset3 span6">
+        <form id="login-form" action="/login" method="post" class="well span6">
+          <div class="modal-header"><a data-dismiss="modal" class="close"></a>
+            <h3>Log In</h3></div>
+            <div class="modal-body">
+              <fieldset>
+                <div class="control-group">
+                  <input type="text" name="username" placeholder="Username" class="input-xlarge uname"/>
+                  <span id="imagePlaceHolder"></span>
+                </div>
+                <div class="control-group">
+                  <input type="password" name="password" placeholder="Password" class="input-xlarge"/>
+                </div>
+              </fieldset>
+            </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" type="submit">Log In</button>
+          </div>
+      </form> 
+    </div>
+  </div>
+</body>
+</html>

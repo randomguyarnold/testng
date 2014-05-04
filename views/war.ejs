@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>War</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-button.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-modal.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-transition.js"></script>
+  <script type="text/javascript" src="/js/client.js"></script>
+  <script>
+  // Display the leaderboard
+  	$(document).ready(function(){
+		var board = "<%=leaderboard%>";
+		console.log(board);
+		boardList = board.split(',');
+		console.log(boardList);
+		var html;
+		$.each(boardList, function(index, value){
+			if(index === 0 || index%2 === 0){
+        rank = index/2+1;
+				html = '<tr><td>'+rank+'<td>'+value+'</td>'
+			}
+			else {
+				html = html+'<td>'+value+'</td></tr>';
+				console.log(html);
+				$(html).appendTo('#leaderboard');
+				html = '';
+			}
+		});
+	});
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+        <div class = "navbar">
+        <div class = "tabbable">
+          <ul class = "nav nav-tabs">
+            <li><a href="/about"><img class="logo" src="/img/about.png"></a></li>
+            <li><a href="/play"><img class="logo" src="/img/play.png"></a></li>
+            <li><a href="/"><img class="logo" src="/img/logo.png"></a></li>      
+            <li class="active"><a href="/war"><img class="logo" src="/img/war.png"></a></li>
+            <li><a href="/profile"><img class="logo" src="/img/profile.png"></a></li>
+          </ul>
+        </div> 
+        </div>
+  </div>  
+			<h3 align="center"><img class="banner" src="/img/leaderbanner.png"></h3>
+    </br>
+			<table class="table table-striped table-bordered" id = "leaderboard">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Win/Loss Ratio</th>
+          </tr>
+        </thead>   
+        <tbody>     
+				  <tr>
+				  </tr>
+        </tbody>
+			</table>
+</body>
+</html>

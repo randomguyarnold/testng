@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Play</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-button.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-modal.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap-transition.js"></script>
+  <script type="text/javascript" src="/js/client.js"></script>
+  <script>
+    $(document).ready(function(){
+	//Populate a list of scripts
+	var scriptNames = "<%=scripts%>";
+    var scriptArray = scriptNames.split(',');
+    $.each(scriptArray, function(index, value){
+      $('#AIpick').append('<option value="'+ value +'">'+ value +'</option>');
+    });
+  });
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+        <div class = "navbar">
+        <div class = "tabbable">
+          <ul class = "nav nav-tabs">
+            <li><a href="/about"><img class="logo" src="/img/about.png"></a></li>
+            <li class="active"><a href="/play"><img class="logo" src="/img/play.png"></a></li>
+            <li><a href="/"><img class="logo" src="/img/logo.png"></a></li>      
+            <li><a href="/war"><img class="logo" src="/img/war.png"></a></li>
+            <li><a href="/profile"><img class="logo" src="/img/profile.png"></a></li>
+          </ul>
+        </div> 
+        </div>
+  </div>  
+    <div class = "navbar">
+    <div class = "tabbable">
+    <ul class = "nav nav-tabs">
+    <li><a href="/fight"><img class="playbtn" src="/img/bar2.png"></a></li><br>
+    <li><img class="playbtn" src="/img/bar1.png"></a></li>
+	<form id="selectAI-form" action="/fight" method="post">
+		<p>Select the AI script to use (upload section in Profile page): </p>
+		<select id = "AIpick" name = "AIscript"></select>
+		<p><button type="submit" class="btn btn-primary" id="submitAI">Submit</button></p>
+	</form>	
+    </ul> 
+    </div>  
+    </div>
+</body>
+</html>

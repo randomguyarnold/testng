@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title> It's time to duel! </title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+	  <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	  <link href="/css/playpage.css" rel="stylesheet">
+	  <script type="text/javascript" src="/js/jquery.js"></script>
+	  <script type="text/javascript" src="/AI/api.js"></script>
+	  <script>
+		//this configures the AI.
+		var username = "<%=username%>";
+		var scriptURL = "<%=scriptfile%>";
+		var ai = (scriptURL!=="undefined")? true:false;
+	  </script>
+	  <script type="text/javascript">
+		//<![CDATA[
+		window.__CF=window.__CF||{};window.__CF.AJS={"abetterbrowser":{"ie":"6"}};
+		//]]>
+	  </script>
+	<script type="text/javascript">
+	//<![CDATA[
+	/* try{if (!window.CloudFlare) { var CloudFlare=[{verbose:0,p:1369114055,byc:0,owlid:"cf",mirage:{responsive:0,lazy:0},oracle:"87/26232f5656afeea676fa131d43ceda",paths:{cloudflare:"/cdn-cgi/nexp/abv=378448694/"},atok:"636787af64a057bb6fb451d8c3de433b",zone:"pokemonshowdown.com",rocket:"0",apps:{"abetterbrowser":{"ie":"6"}}}];var a=document.createElement("script"),b=document.getElementsByTagName("script")[0];a.async=!0;a.src="../showdown/ajax.cloudflare.com/cdn-cgi/nexp/abv%3d4035706501/cloudflare.min.js";b.parentNode.insertBefore(a,b);}}catch(e){}; */
+	//]]>
+	</script>
+	<link rel="shortcut icon" href="/showdown/favicon.ico" id="dynamic-favicon" />
+			<link rel="stylesheet" href="/showdown/style/client.css" />
+			<link rel="stylesheet" href="/showdown/style/sim-types.css" />
+			<link rel="stylesheet" href="/showdown/style/battle.css" />
+			<link rel="stylesheet" href="/showdown/style/utilichart.css" />
+			<link rel="stylesheet" href="/showdown/style/font-awesome.css" />
+			<link rel="stylesheet" href="/showdown/style/jquery.slider.min.css" />
+			<meta id="viewport" name="viewport" content="width=840" />
+			<meta name="robots" content="noindex" />
+			<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+			<script>
+				var Config = {};
+			</script>
+			<!--[if lte IE 8]><script>
+				Config.oldie = true;
+			</script><![endif]-->
+			<script>
+				var _gaq = _gaq || [];
+				if (!(/^(.*)\.psim\.us$/i.test(document.location.hostname))) {
+					_gaq.push(['_setAccount', 'UA-26211653-1'], ['_setDomainName', 'pokemonshowdown.com']);
+				} else {
+					_gaq.push(['_setAccount', 'UA-26211653-2'], ['_setDomainName', 'psim.us']);
+				}
+				_gaq.push(['_trackPageview']);
+				(function() {
+					var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				})();
+			</script>
+			<script>
+				window.onerror = function(err, uri, line) {
+					var msg = uri + ':' + line + ': ' + err;
+					if ('_gaq' in window) {
+						_gaq.push(['_trackEvent', 'Client error', msg]);
+					} else {
+						alert('ERROR: ' + msg);
+					}
+					return false;
+				};
+			</script>
+			
+					<script>
+			var Config = {testclient: true};
+			(function() {
+				if (location.search !== '') {
+					var m = /\?~~(([^:\/]*)(:[0-9]*)?)/.exec(location.search);
+					if (m) {
+						Config.server = {
+							id: m[1],
+							host: m[2],
+							port: (m[3] && m[3].substr(1)) || 8000
+						};
+					} else {
+						alert('Unrecognised query string syntax: ' + location.search);
+					}
+				}
+			})();
+		</script>
+</head>	
+<body>
+    <div class="container-fluid">     
+    <div class = "navbar">
+	<div class = "tabbable">
+	  <ul class = "nav nav-tabs">
+            <li><a href="/about"><img class="logo" src="/img/about.png"></a></li>
+            <li class="active"><a href="/play"><img class="logo" src="/img/play.png"></a></li>
+            <li><a href="/"><img class="logo" src="/img/logo.png"></a></li>      
+            <li><a href="/war"><img class="logo" src="/img/war.png"></a></li>
+            <li><a href="/profile"><img class="logo" src="/img/profile.png"></a></li>
+	  </ul>
+	</div> 
+    </div>
+	    </div>
+		<div id = "simulator">
+				
+				<div id="header" class="header">
+			<img class="logo" src="/showdown/pokemonshowdownbeta.png" alt="Pok&eacute;mon Showdown! (beta)" /><div class="maintabbarbottom"></div>
+		</div>
+		<div id="main">
+			<div id="loading-message" class="mainmessage">Initializing... <noscript>FAILED<br /><br />Pok&eacute;mon Showdown requires JavaScript.</noscript></div>
+		</div>
+		<script>
+			document.getElementById('loading-message').innerHTML += ' DONE<br />Loading libraries...';
+		</script>
+		<script src="/showdown/js/lib/jquery-2.0.0.min.js"></script>
+		<script src="/showdown/js/lib/jquery-cookie.js"></script>
+		<script src="/showdown/js/lib/autoresize.jquery.min.js"></script>
+		<script src="/showdown/js/lib/jquery.json-2.3.min.js"></script>
+		<script src="/showdown/js/lib/soundmanager2-nodebug-jsmin.js"></script>
+		<script>
+			soundManager.setup({url: 'showdown/swf/'});
+		</script>
+		<script src="/showdown/js/lib/html-sanitizer-minified.js"></script>
+		<script src="/showdown/js/lib/lodash.compat.js"></script>
+		<script src="/showdown/js/lib/backbone.js"></script>
+
+		<script>
+			document.getElementById('loading-message').innerHTML += ' DONE<br />Loading client...';
+			document.getElementById('loading-message').innerHTML = 'If the client is taking a long time to load, try refreshing in a few minutes. If it still doesn\'t work, Pok&eacute;mon Showdown may be down for maintenance. We apologize for the inconvenience.<br /><br />'+document.getElementById('loading-message').innerHTML;
+		</script>
+
+		<script src="/showdown/js/config.js"></script>
+		<script src="/showdown/js/battledata.js"></script>
+		<script src="/showdown/data/pokedex-mini.js"></script>
+		<script src="/showdown/js/battle.js"></script>
+		<script src="/showdown/js/lib/sockjs-0.3.min.js"></script>
+
+		<script src="/showdown/js/client.js"></script>
+		<script src="/showdown/js/client-mainmenu.js"></script>
+		<script src="/showdown/js/client-teambuilder.js"></script>
+		<script src="/showdown/js/client-ladder.js"></script>
+		<script src="/showdown/js/client-chat.js"></script>
+		<script src="/showdown/js/client-battle.js"></script>
+
+		<script src="/showdown/data/learnsets.js"></script>
+		<script src="/showdown/js/lib/jquery.slider.min.js"></script>
+
+		<script src="/showdown/data/graphics.js"></script>
+		<script src="/showdown/data/pokedex.js"></script>
+		<script src="/showdown/data/formats-data.js"></script>
+		<script src="/showdown/data/moves.js"></script>
+		<script src="/showdown/data/items.js"></script>
+		<script src="/showdown/data/abilities.js"></script>
+		<script src="/showdown/data/typechart.js"></script>
+
+		<script src="/showdown/js/utilichart.js"></script>
+
+		<script src="/showdown/data/aliases.js" async="async"></script>
+		
+		<script>
+			Backbone.History.prototype.navigate = function() {};
+			var app = new App();
+		</script>
+		</div>
+
+</body>
+</html>
